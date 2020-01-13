@@ -24,6 +24,7 @@ export class TodoItem extends Component {
 
 
     render() {
+        // Using de-structuring to pull out the varables from prop
         const { id , title } = this.props.todo;
         return (
             <div style={this.getStyle()}>
@@ -32,6 +33,7 @@ export class TodoItem extends Component {
                     {this.props.todo.title} */}
                     <input type="checkbox" onChange={this.props.marksComplete.bind(this,id) } /> {''}
                     {title}
+                    <button onClick={this.props.delTodo.bind(this,id)} style={btnStyle}>x</button>
                 </p>
             </div>
         )
@@ -45,9 +47,14 @@ TodoItem.propTypes = {
     todo : PropTypes.object.isRequired 
 }
 
-// We can use css style by saving its properties into a variable
-/*const colorStyle = {
-    backgroundColor: 'blue'
-}*/
+
+const btnStyle = {
+    backgroundColor: '#ff0000',
+    color: '#fff',
+    border: 'none',
+    padding: '5px 9px',
+    borderRadius: '50%',
+    float: 'right'
+}
 
 export default TodoItem

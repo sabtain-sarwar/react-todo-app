@@ -6,7 +6,7 @@ class Todos extends React.Component {
   render() {
       //console.log(PropTypes);
     return this.props.todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} marksComplete={this.props.marksComplete} />
+        <TodoItem key={todo.id} todo={todo} marksComplete={this.props.marksComplete} delTodo={this.props.delTodo} />
     )); 
   }
 }

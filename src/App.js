@@ -25,6 +25,7 @@ class App extends React.Component {
     ]
   }
 
+  // Toggle Complete
   marksComplete = (id) => {
      this.setState({ todos: this.state.todos.map(todo => {
        if (todo.id === id) {
@@ -35,11 +36,16 @@ class App extends React.Component {
   }
 
 
+  // Delete Todo
+  delTodo = (id) => {
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
+  }
+
   render() {
     //console.log(this.state.todos);
     return (
       <div className="App">
-        <Todos todos={this.state.todos} marksComplete={this.marksComplete} />
+        <Todos todos={this.state.todos} marksComplete={this.marksComplete} delTodo={this.delTodo} />
       </div>
     );
   }
