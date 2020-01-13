@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 class Todos extends React.Component {
   render() {
-      console.log(PropTypes);
+      //console.log(PropTypes);
     return this.props.todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo}/>
+        <TodoItem key={todo.id} todo={todo} marksComplete={this.props.marksComplete} />
     )); 
   }
 }
