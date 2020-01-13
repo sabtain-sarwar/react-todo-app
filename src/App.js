@@ -29,7 +29,6 @@ class App extends React.Component {
     //console.log(this.state.todos);
     return (
       <div className="App">
-        <h1>Application</h1>
         <Todos todos={this.state.todos}/>
       </div>
     );

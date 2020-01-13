@@ -23,10 +23,20 @@ export class TodoItem extends Component {
     }
 
 
+    // If we use arrow function then we don't need to bind it
+    markComplete (e) {
+        console.log('this function is getting called');
+        console.log(this.props);
+    }
+
+
     render() {
         return (
             <div style={this.getStyle()}>
-                <p>{this.props.todo.title}</p>
+                <p>
+                    <input type="checkbox" onChange={this.markComplete.bind(this) } /> {''}
+                    {this.props.todo.title}
+                </p>
             </div>
         )
     }
@@ -39,8 +49,9 @@ TodoItem.propTypes = {
     todo : PropTypes.object.isRequired 
 }
 
-const colorStyle = {
+// We can use css style by saving its properties into a variable
+/*const colorStyle = {
     backgroundColor: 'blue'
-}
+}*/
 
 export default TodoItem
