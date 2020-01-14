@@ -1,31 +1,23 @@
 import React from 'react';
+import { BrowserRouter as Router , Route} from 'react-router-dom';
 import Header from './components/layouts/Header'
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
+import About from './components/pages/About';
 import uuid from 'uuid';
+import axios from 'axios';
 import './App.css';
 
 
 class App extends React.Component {
 
   state = {
-    todos : [
-      {
-        id : uuid.v4(),
-        title : 'Take out the trash',
-        completed : false
-      },
-      {
-        id : uuid.v4(),
-        title : 'Dinner with Wife',
-        completed : false
-      },
-      {
-        id : uuid.v4(),
-        title : 'Meeting with Boss',
-        completed : false
-      }
-    ]
+    todos : []
+  }
+
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+    .then(res => this.setState( {todos: res.data} ))
   }
 
   // Toggle Complete
@@ -56,13 +48,20 @@ class App extends React.Component {
   render() {
     //console.log(this.state.todos);
     return (
-      <div className="App">
-        <div className="container">
-          <Header />
-          <AddTodo addTodo={this.addTodo} />
-          <Todos todos={this.state.todos} marksComplete={this.marksComplete} delTodo={this.delTodo} />
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Route exact path="/" render={props => (
+              <React.Fragment>
+                <AddTodo addTodo={this.addTodo} />
+                <Todos todos={this.state.todos} marksComplete={this.marksComplete} delTodo={this.delTodo} />
+              </React.Fragment>
+            )} />
+            <Route path="/about" component={About} />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
